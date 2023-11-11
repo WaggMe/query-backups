@@ -1,9 +1,8 @@
 -- BONK Most Active Addresses
 -- https://dune.com/queries/1839468/3025923
 
--- Query done by @ennnas
--- Original Query link: https://dune.com/queries/1839175
-
+/* Query done by @ennnas */
+/* Original Query link: https://dune.com/queries/1839175 */
 SELECT
   token_balance_owner,
   CASE
@@ -19,10 +18,17 @@ SELECT
 FROM
   solana.account_activity
 WHERE
-  block_time > (NOW() - interval '1 days')
+  block_time > (NOW() - INTERVAL '1' day)
   AND token_mint_address = 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263'
+  AND token_balance_owner IN (
+  '5P6n5omLbLbP4kaPGL8etqQAHEx2UCkaUyvjLDnwV4EY',
+  'BqnpCdDLPV2pFdAaLnVidmn3G93RP2p5oRdGEY2sJGez',
+  '9gd6zAAtP1wdaV9NcxTyvmCPVE8HycPWCA2jPF6GgpX6',
+  'A9yRKSx8SyqNdCtCMUgr6wDXUs1JmVFkVno6FcscSD6m',
+  '5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1',
+  '2PFvRYt5h88ePdQXBrH3dyFmQqJHTNZYLztE847dHWYz'
+  )
 GROUP BY
   token_balance_owner
 ORDER BY
   volume_traded DESC
-  
